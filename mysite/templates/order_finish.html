@@ -1,0 +1,165 @@
+<!DOCTYPE HTML> {% load static %}
+
+<html>
+
+<head>
+    <title>Food Search</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        var a = {{ form | safe }};
+
+        window.onload = function(){
+
+            $('#goBack').on('click', function(){
+
+                $('body').fadeOut(1000)
+                setTimeout(function(){
+                    window.history.back()
+                }, 1000)
+                
+            })
+
+            $('table').hide()
+
+            var str = ''
+            for(var i of a){
+                str += '<tr>'
+                str += '<td>' + i[1] +'</td>'
+                str += '<td>' + i[2] + i[3] + i[4] + i[5] + '</td>'
+
+                for(j in i){
+
+                    if(j < 6)
+                        continue;
+
+                    if( j == 14 || j == 15){
+                        str += '<td><a href="'+ i[j] +'">' + i[j] + '</a></td>'
+                    }
+                    else{
+                        str += '<td>' + i[j] +'</td>'
+                    }
+
+                }
+                
+                str += '</tr>'
+            }
+
+            $('tbody').html(str)
+
+            $('table').fadeIn(1000)
+
+            
+        }
+
+        
+    </script>
+
+    <style>
+        h3.major{
+            margin: 0 0 2rem 0.5rem;
+            
+        }
+
+        h3 {
+            font-size: 2rem;
+            border-bottom: 1px, white;
+        }
+
+        h4 {
+            font-size: 1rem;
+            padding : 0px 0px 20px 10px;
+        }
+
+        .table-wrapper{
+            overflow-x: visible;
+        }
+        table {
+            display: block;
+            max-width: 100%;
+            line-height: normal;
+        }
+
+        th, td{
+            max-width: 220px;
+            min-width: 180px;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        /* width */
+        ::-webkit-scrollbar {
+            width: thin;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: rgb(238, 238, 238); 
+        }
+
+        ::-webkit-scrollbar:hover{
+            width: 12px;
+        }
+        ::-webkit-scrollbar-thumb:hover{
+            background: rgb(168, 168, 168); 
+        }
+
+        a{
+            color: white;
+        }
+
+        a:hover{
+            color: gray;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <section>
+        <h3 class="major">Table</h3>
+        <h4>content</h4>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>店名</th>
+                        <th>地址</th>
+                        <th>種類</th>
+                        <th>風格</th>
+                        <th>素食</th>
+                        <th>服務費</th>
+                        <th>低消</th>
+                        <th>均消</th>
+                        <th>Open</th>
+                        <th>Close</th>
+                        <th>菜單</th>
+                        <th>FB</th>
+                        <th>電話</th>
+                        <th>CP值</th>
+                        <th>服務態度</th>
+                        <th>料理美味程度</th>
+                        <th>整潔</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>    
+            </table>
+        </div>
+    </section>
+    <div style="text-align: center;">
+        <input type="submit" value="Go Back" class="primary" id="goBack" />
+    </div>
+
+</body>
